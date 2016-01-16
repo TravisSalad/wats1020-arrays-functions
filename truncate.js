@@ -16,8 +16,36 @@
 // This portion of the script is meant to call and display the result of your Function.
 // You do not need to change the following lines, but you may change them if you 
 // are experimenting further or pursuing stretch goals.
+
+//created a function called truncateWords that accepts longText and numWords as arguments
+var truncateWords = function(longText, numWords){
+//split longText into individual words
+  var word = longText.split(" ");
+//create a variable called wordLength that is equal to the number of words in longText
+  var wordLength = word.length;
+//remove numWords which is equal to wordLimit, or 8, from wordLength or total number of words
+  var wordRemove = wordLength - numWords;
+//splice the words from the first 8 words and then remove everything after that and add an elipses
+  word.splice(numWords, wordRemove, "...");
+//join the words together and add a space between them
+   return word.join(" ");
+}
+
+
+//define variables
 var originalText = "There are two hard things in Computer Science: Cach invalidation, naming things, and off-by-one errors.";
 var wordLimit = 8;
 var shortText = truncateWords(originalText, wordLimit);
-console.log('originalText: ' + originalText);
-console.log('shortText: ' + shortText);
+
+//created a functioncalled newText to display full text when clicked
+var newText = function(){
+//retreive .innerHTML data
+  var str = document.getElementById("demo").innerHTML;
+//replace shortText with originalText
+  var res = str.replace(shortText, originalText);
+//print res which is the new version of the text
+  document.getElementById("demo").innerHTML = res;
+}
+
+//print truncateWords to the element with the ID=demo
+  document.getElementById("demo").innerHTML=(shortText);
